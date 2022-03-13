@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Curated Playlists - 1</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="My Podcast template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap-4.1.2/bootstrap.min.css">
+<link href="../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../static/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../static/styles/episodes_responsive.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/episodes.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<style type="text/css">
+	/*.banner
+{
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background: url(bgnew.png);
+	background-size: cover;
+	background-position: bottom;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}*/
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  z-index: -100;
+}
+
+.custom-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  background: linear-gradient(to top, #ffff, transparent 10%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.banner #text
+{
+	position: relative;
+	font-size: 12em;
+	color: #ffff;
+}
+
+.banner .clouds
+{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.banner .clouds img 
+{
+	position: absolute;
+	bottom: -110px;
+	max-width: 100%;
+	animation: animate calc(3S * var(--i)) linear infinite;
+}
+
+@keyframes animate
+{
+	0%
+	{
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	25%,75%
+	{
+		opacity: 1;
+	}
+	100%
+	{
+		opacity: 0;
+		transform: scale(2);
+	}
+}
+
+section
+{
+	position: relative;
+	padding: 75px 100px ;
+}
+
+section h2
+{
+	position: relative;
+	font-size: 2.5em;
+	margin-bottom: 20px;
+}
+
+
+.rule {
+  margin: 10px 0;
+  border: none;
+  height: 1.5px;
+  background-image: linear-gradient(left, #f0f0f0, #c9bbae, #f0f0f0);
+}
+
+/* ===== Select Box ===== */
+.sel {
+  font-size: 1rem;
+  display: inline-block;
+  margin: 3em 2em;
+  width: 350px;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+/* .sel::before {
+  position: absolute;
+  content: '\f063';
+  font-size: 2em;
+  color: #FFF;
+  right: 20px;
+  top: calc(50% - 0.5em);
+} */
+
+.sel.active::before {
+  transform: rotateX(-180deg);
+}
+
+.sel__placeholder {
+  display: block;
+  font-size: 2.3em;
+  color: white;
+  padding: 0.2em 0.5em;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  visibility: visible;
+}
+
+.sel.active .sel__placeholder {
+  visibility: hidden;
+}
+
+.sel__placeholder::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.2em 0.5em;
+  content: attr(data-placeholder);
+  visibility: hidden;
+}
+
+.sel.active .sel__placeholder::before {
+  visibility: visible;
+}
+
+.sel__box {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -4px;
+  display: none;
+  list-style-type: none;
+  text-align: left;
+  font-size: 1em;
+  background-color: #FFF;
+  width: calc(100% + 8px);
+  box-sizing: border-box;
+}
+
+.sel.active .sel__box {
+  display: block;
+  animation: fadeInUp 500ms;
+}
+
+.sel__box__options {
+  display: list-item;
+  font-size: 1.5em;
+  color: #838e95;
+  padding: 0.5em 1em;
+  user-select: none;
+}
+
+.sel__box__options::after {
+  content: '\f00c';
+  font-size: 0.5em;
+  margin-left: 5px;
+  display: none;
+}
+
+.sel__box__options.selected::after {
+  display: inline;
+}
+
+.sel__box__options:hover {
+  background-color: #ebedef;
+}
+
+/* ----- Select Box Black Panther ----- */
+.sel {
+  /* border-bottom: 4px solid rgba(0, 0, 0, 0.3); */
+  border-bottom: 4px solid rgb(247, 247, 247, 0.23);
+}
+
+.sel--black-panther {
+  z-index: 3;
+}
+
+/* ----- Select Box Superman ----- */
+.sel--superman {
+/*   display: none; */
+  z-index: 2;
+}
+
+/* ===== Keyframes ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+.button_container {
+  left: 0;
+  right: 0;
+  top: 30%;
+}
+
+.btn {
+  border: none;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #222;
+  padding: 17px 60px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.btn span {
+  position: relative; 
+  z-index: 1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.link {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.link a {
+  color: #000;
+  font-size: 25px; 
+}
+
+
+.relevance-test {
+	text-align: center;
+}
+
+
+
+</style>
+<body>
+
+<div class="super_container">
+  <div class="banner">
+  	<div class="videoWrapper">
+                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                        <source src="../static/rain3.mp4" type="video/mp4">
+
+                        Your browser does not support the video tag.
+                    </video>
+                  
+                    <div class="overlay">
+                    	 <!-- <h2 class="text-white mt-5 mb-lg-4" data-aos="zoom-in" data-aos-delay="800" style="text-align:left;line-height: 10%; padding-left: 100px; padding-top: 100px; ">
+                        <span class="typed4" style="font-weight: 800;"></span></h2>
+
+                        
+                    	 <h2 class="text-white mt-5 mb-lg-4" data-aos="zoom-in" data-aos-delay="800" style="text-align:left;line-height: 0%; padding-left: 100px; padding-top: 0px; ">
+                        <span class="typed5" style="color: darkorange; font-weight: 800;"></span></h2>
+
+                        <h2 class="text-white mt-5 mb-lg-4" data-aos="zoom-in" data-aos-delay="800" style="text-align:left;line-height: 0%; padding-left: 100px; padding-top: 0px; ">
+                        <span class="typed1" style="font-weight: 800;"></span></h2>-->
+
+						<h2 class="text-white mt-5 mb-lg-4" data-aos="zoom-in" data-aos-delay="800" style="text-align:left;line-height: 10%; padding-left: 100px; padding-top: 120px;font-family:'Noto Sans JP', sans-serif; font-weight: 900;font-size: 42px ">
+							<span class="typed4"></span></h2>
+	
+	
+							 <h2 class="text-white mt-5 mb-lg-4" data-aos="zoom-in" data-aos-delay="800" style="text-align:left;line-height: 0%; padding-left: 100px; padding-top: 0px; font-family:'Noto Sans JP', sans-serif; font-weight: 900;font-size: 42px">
+							<span class="typed5" style="color: darkorange;"></span></h2>
+	
+							<h2 class="text-white mt-5 mb-lg-4" data-aos="zoom-in" data-aos-delay="800" style="text-align:left;line-height: 0%; padding-left: 100px; padding-top: 5px; font-family:'Noto Sans JP', sans-serif; font-weight: 900;font-size: 42px">Whatever be it, we've got you covered!
+							</h2>
+
+						<img src="../static/cloud2.png" style="position: absolute;bottom:-90px; left: -80px;">
+												<img src="../static/cloud2.png" style="position: absolute;bottom:-90px; left: -150px;">
+												<img src="../static/cloud2.png" style="position: absolute;bottom:-90px; right: -420px;">
+												<img src="../static/cloud2.png" style="position: absolute;bottom:-90px; right: -420px;">
+
+                    
+                </div>
+		
+		<div class ="clouds">
+			<img src="../static/cloud1.png" style="--i:1;">
+			<img src="../static/cloud2.png" style="--i:2;">
+			<img src="../static/cloud3.png" style="--i:3;">
+			<img src="../static/cloud4.png" style="--i:4;">
+			<img src="../static/cloud5.png" style="--i:5;">
+			<img src="../static/cloud1.png" style="--i:10;">
+			<img src="../static/cloud2.png" style="--i:9;">
+			<img src="../static/cloud3.png" style="--i:8;">
+			<img src="../static/cloud4.png" style="--i:7;">
+			<img src="../static/cloud5.png" style="--i:6;">
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<!-- <header class="header trans_400">
+ -->
+		<!-- Logo -->
+		<!-- <div class="logo">
+			<a href="#"><span>my</span>vibe</a>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-start justify-content-start">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a href="episodes.html">Vibe with us</a></li>
+								<li><a href="blog.html">Blog</a></li>
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<!-- Submit & Social -->
+		<div class="header_right d-flex flex-row align-items-start justify-content-start">
+
+			<!-- Submit -->
+			
+			
+			<!-- Social -->
+			<div class="social">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-soundcloud" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+
+			<!-- Hamburger -->
+			<div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
+			
+		</div>
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu">
+		<div class="menu_content d-flex flex-column align-items-end justify-content-start">
+			<ul class="menu_nav_list text-right">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="episodes.html">Vibe with us</a></li>
+				<li><a href="blog.html">Blog</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+			<div class="menu_extra d-flex flex-column align-items-end justify-content-start">
+				<div class="menu_submit"><a href="#">Submit your podcast</a></div>
+				<div class="social">
+					<ul class="d-flex flex-row align-items-start justify-content-start">
+						<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-soundcloud" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Home -->
+
+	<!-- <div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/about.jpg" data-speed="0.8"></div>
+		<div class="home_container d-flex flex-column align-items-center justify-content-center">
+			<div class="home_content">
+				<div class="home_title"><h1>vibe with us</h1></div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- Episodes -->
+
+	<div class="episodes" style="background: linear-gradient(to bottom, rgba(255,255,255,1) 5%, rgba(255,255,255,0.90) 12%, rgba(255,255,255,0) 40%), url(../static/images/bgblur2.png);background-size: cover; background-position: center; padding-top: 50px;">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<!-- <div class="season_links">
+						<ul class="d-flex flex-row align-items-start justify-content-center flex-wrap">
+							<li class="item_filter_btn" data-filter="*">Top listens today</li>
+							<li class="item_filter_btn" data-filter=".s1">3 am </li>
+							<li class="item_filter_btn" data-filter=".s2">90s</li>
+							<li class="item_filter_btn" data-filter=".s3">Summer</li>
+						</ul>
+					</div> -->
+				</div>
+			</div>
+			<div class="row episodes_row">
+				
+				<!-- Sidebar -->
+				<!-- <div class="col-lg-2">
+					<div class="sidebar"> -->
+						
+						<!-- Search -->
+						<!-- div class="sidebar_search">
+							<div class="sidebar_title">Search</div>
+							<form action="#" class="search_form" id="search_form">
+								<input type="text" class="search_input" placeholder="Search here" required="required">
+								<button class="search_button"><img src="images/search.png" alt=""></button>
+							</form>
+						</div> -->
+
+						<!-- Categories -->
+						<!-- <div class="sidebar_list">
+							<div class="sidebar_title">Categories</div>
+							<ul>
+								<li><a href="#">Travel</a></li>
+								<li><a href="#">Music</a></li>
+								<li><a href="#">Lifestyle</a></li>
+								<li><a href="#">Social Media</a></li>
+								<li><a href="#">Art</a></li>
+								<li><a href="#">Audiobooks</a></li>
+								<li><a href="#">Documentaries</a></li>
+							</ul>
+						</div> -->
+
+						<!-- Tags -->
+						<!-- <div class="sidebar_tags">
+							<div class="sidebar_title">Associated artists</div>
+							<div class="tags">
+								<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+									<li><a href="#">eden</a></li>
+									<li><a href="#">jeremy zucker</a></li>
+									
+								</ul>
+							</div>
+						</div> -->
+
+						<!-- Archive -->
+						<!-- <div class="sidebar_archive">
+							<div class="sidebar_title">Vibe back in time</div>
+							<div class="dropdown">
+								<ul>
+									<li class="dropdown_selected d-flex flex-row align-items-center justify-content-start"><span>September 2018</span><i class="fa fa-chevron-down ml-auto" aria-hidden="true"></i>
+										<ul>
+											<li><a href="#">August 2018</a></li>
+											<li><a href="#">July 2018</a></li>
+											<li><a href="#">June 2018</a></li>
+											<li><a href="#">May 2018</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div> -->
+					</div>
+				</div>
+
+				<!-- Episodes -->
+				<div class="col-lg-11 episodes_col ">
+					<div class="episodes_container">
+						
+						<!-- Episode -->
+						<div class="episode d-flex flex-row align-items-start justify-content-start s1">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/images-alt/a3.jpeg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">yukata h</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="https://open.spotify.com/track/4gUQmfnDAS7wwH0pzOH3Fb?si=7fcd6f56144d4bfb">Rain</a></div>
+								<div class="episode_date"><a href="https://open.spotify.com/album/5eESUGzjysOJC0S2y2KwYn?si=ZiUMqjfuQN2fPUvw8iPUgQ&dl_branch=1">Yukata H</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<!-- <div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count">2371</div>
+									</div> -->
+									
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start">
+										<div id="jplayer_17" class="jp-jplayer"></div>
+										<div id="jp_container_17" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" id="test-button" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="episode d-flex flex-row align-items-start justify-content-start s1">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/episode_1.jpg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">hm surf</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="https://open.spotify.com/track/4gUQmfnDAS7wwH0pzOH3Fb?si=7fcd6f56144d4bfb">Cloyster</a></div>
+								<div class="episode_date"><a href="https://open.spotify.com/album/5eESUGzjysOJC0S2y2KwYn?si=ZiUMqjfuQN2fPUvw8iPUgQ&dl_branch=1">HM Surf</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<!-- <div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count">2371</div>
+									</div> -->
+									
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start">
+										<div id="jplayer_18" class="jp-jplayer"></div>
+										<div id="jp_container_18" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="episode d-flex flex-row align-items-start justify-content-start s1">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/images-alt/a8.jpeg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">hoogway</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="https://open.spotify.com/track/4gUQmfnDAS7wwH0pzOH3Fb?si=7fcd6f56144d4bfb">Everything</a></div>
+								<div class="episode_date"><a href="https://open.spotify.com/album/5eESUGzjysOJC0S2y2KwYn?si=ZiUMqjfuQN2fPUvw8iPUgQ&dl_branch=1">Hoogway</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<!-- <div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count">2371</div>
+									</div> -->
+									
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start">
+										<div id="jplayer_19" class="jp-jplayer"></div>
+										<div id="jp_container_19" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="episode d-flex flex-row align-items-start justify-content-start s1">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/images-alt/a7.jpeg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">carpenters</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="https://open.spotify.com/track/4gUQmfnDAS7wwH0pzOH3Fb?si=7fcd6f56144d4bfb">Rainy Days & Mondays</a></div>
+								<div class="episode_date"><a href="https://open.spotify.com/album/5eESUGzjysOJC0S2y2KwYn?si=ZiUMqjfuQN2fPUvw8iPUgQ&dl_branch=1">Carpenters</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<!-- <div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count">2371</div>
+									</div> -->
+									
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start">
+										<div id="jplayer_20" class="jp-jplayer"></div>
+										<div id="jp_container_20" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Episode -->
+						<div class="episode d-flex flex-row align-items-start justify-content-start s1">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/episode_2.jpg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">jishle</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="episode.html">Sundown</a></div>
+								<div class="episode_date"><a href="#">Jishle</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<!-- <div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count">2371</div>
+									</div> -->
+									<div class="show_comments">
+										<a href="#">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<!-- <div class="show_comments_icon show_info_icon"><img class="svg" src="images/speech-bubble.svg" alt=""></div>
+												<div class="show_comments_count">88 Comments</div> -->
+											</div>
+										</a>	
+									</div>
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start"> 
+										<div id="jplayer_21" class="jp-jplayer"></div>
+										<div id="jp_container_21" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- Episode -->
+						<div class="episode d-flex flex-row align-items-start justify-content-start s2">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/episode_3.jpg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">raimu</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="episode.html">Botanicals</a></div>
+								<div class="episode_date"><a href="#">Raimu</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<!-- <div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count">2371</div> -->
+									</div>
+									<div class="show_comments">
+										<a href="#">
+											<!-- <div class="d-flex flex-row align-items-center justify-content-start">
+												<div class="show_comments_icon show_info_icon"><img class="svg" src="images/speech-bubble.svg" alt=""></div>
+												<div class="show_comments_count">88 Comments</div>
+											</div> -->
+										</a>	
+									</div>
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start">
+										<div id="jplayer_22" class="jp-jplayer"></div>
+										<div id="jp_container_22" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						
+						<!-- Episode -->
+						<div class="episode d-flex flex-row align-items-start justify-content-start s2">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/episode_4.jpg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">eden</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="episode.html">Untitled</a></div>
+								<div class="episode_date"><a href="#">EDEN</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count"></div>
+									</div>
+									<div class="show_comments">
+										<a href="#">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<div class="show_comments_icon show_info_icon"><img class="svg" src="images/speech-bubble.svg" alt=""></div>
+												<div class="show_comments_count"></div>
+											</div>
+										</a>	
+									</div>
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start">
+										<div id="jplayer_23" class="jp-jplayer"></div>
+										<div id="jp_container_23" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- Episode -->
+						<div class="episode d-flex flex-row align-items-start justify-content-start s3">
+							<div>
+								<div class="episode_image">
+									<img src="../static/images/episode_5.jpg" alt="">
+									<div class="tags">
+										<ul class="d-flex flex-row align-items-start justify-content-start">
+											<li><a href="#">joji</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="episode_content">
+								<div class="episode_name"><a href="episode.html">Yeah Right</a></div>
+								<div class="episode_date"><a href="#">Joji</a></div>
+								<div class="show_info d-flex flex-row align-items-start justify-content-start">
+									<div class="show_fav d-flex flex-row align-items-center justify-content-start">
+										<div class="show_fav_icon show_info_icon"><img class="svg" src="images/heart.svg" alt=""></div>
+										<div class="show_fav_count"></div>
+									</div>
+									<div class="show_comments">
+										<a href="#">
+											<div class="d-flex flex-row align-items-center justify-content-start">
+												<div class="show_comments_icon show_info_icon"><img class="svg" src="images/speech-bubble.svg" alt=""></div>
+												<div class="show_comments_count"></div>
+											</div>
+										</a>	
+									</div>
+								</div>
+								<!-- Player -->
+								<div class="single_player_container">
+									
+									<div class="single_player d-flex flex-row align-items-center justify-content-start">
+										<div id="jplayer_24" class="jp-jplayer"></div>
+										<div id="jp_container_24" class="jp-audio" role="application" aria-label="media player">
+											<div class="jp-type-single">
+												<div class="player_controls">
+													<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
+														<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-between">
+															<div>
+																<div class="jp-controls-holder play_button ml-auto">
+																	<button class="jp-play" tabindex="0"></button>
+																</div>
+															</div>
+															<div>
+																<div class="jp-progress">
+																	<div class="jp-seek-bar">
+																		<div class="jp-play-bar"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-between ml-auto">
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<button class="jp-mute" tabindex="0"></button>
+															</div>
+															<div class="d-flex flex-row align-items-center justify-content-start">
+																<div class="jp-volume-bar">
+																	<div class="jp-volume-bar-value"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="jp-no-solution">
+													<span>Update Required</span>
+													To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="row page_nav_row">
+				<div class="col">
+					<div class="page_nav d-flex flex-row align-items-center justify-content-center">
+						<ul class="d-flex flex-row">
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+	<!-- <div class="newsletter">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title light text-center"><h1>Join my Newsletter</h1></div>
+					<div class="newsletter_text text-center">
+						<p>Stay on track with the latest information about our podcasts, guests, special guest and giveaways.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row newsletter_row">
+				<div class="col-lg-10 offset-lg-1">
+					
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <div class="weekly">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/weekly.jpg" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row row-eq-height"> -->
+	
+
+				
+ 
+			<!-- BUTTON FOR HOME PAGE RETURN -->
+		<!-- 	<div class="row">
+				<div class="col text-center">
+					<div class="button_fill shows_2_button"><a href="#">Home Page</a></div>
+				</div>
+			</div>
+		</div>
+	</div>	 -->		
+				
+	<div class="button_container" style="padding-top: 30px; padding-bottom: 20px; background-image: url(../static/images/bgblur40.png);background-size: cover; background-position: center;text-align: center;">
+		<h3 style="color: white;">Didn't really jam to a song? Tell us about any song you felt wasn't relevant to this playlist!</h3>
+		<div class="sel sel--black-panther" style="font-size: 11px;">
+			<select name="select-profession" id="select-profession">
+			  <option value="" disabled>Select Song</option>
+			  <option value="Rain">Rain</option>
+			  <option value="Cloyster">Cloyster</option>
+			  <option value="Everything">Everything</option>
+			  <option value="Rainy Days">Rainy Days</option>
+			  <option value="Sundown">Sundown</option>
+			  <option value="Botanicals">Botanicals</option>
+			  <option value="Untitled">Untitled</option>
+			  <option value="Yeah Right">Yeah Right</option>
+			</select>
+		  </div>
+	  <button class="btn" id="submit-test"><span>Submit</span></button>
+		</div>				
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row footer_logo_row">
+				<img src="../static/idk.gif" style="width: 300px;height: 300px; left:0;">
+				<div class="col d-flex flex-row ">
+					<div class="logo">
+						<a href="#"><span>curated playlists carefully</span>brewed up just for today!</a>
+						<br>
+						<span style="font-size: 17px;">So what exactly are these</span> <span style="font-size: 18px;color: darkorange;">curated playlists?</span><br>
+						<span style="font-size: 17px;">
+							A gloomy rainy monday, another one of those overly-exhausting workdays or the 3am nights when you're simply searching for some sense of direction or purpose... days like these seek to be accompanied by a very specific array of songs. Curated playlists are nothing but some handpicked songs that we feel would hit just the right spot for some very specific yet generic days you might be having !
+
+						</span>
+						<br>
+						<br>
+						<a href="https://youtube.com/playlist?list=PLX0NXCPtPK5CXJqVhHT1RZWIEmFeewl1m" style="text-align:center; font-size: 28px;"><span>Find Us</span>Youtube</a>
+
+						
+					
+				
+						<!-- <img src="idk.gif" style="width: 300px;height: 300px; left:0;"> -->
+					</div>
+				</div>
+			</div>
+			<!-- <div class="row footer_content_row"> -->
+				
+				<!-- Tags -->
+				<!-- <div class="col-lg-3">
+					<div class="footer_title">Featured Artists</div>
+					<div class="footer_list">
+						<div><div><a href="#">EDEN</a></div></div>
+						<div><div><a href="#">Jeremy zucker</a></div></div>
+						<div><div><a href="#">ya</a></div></div>
+						<div><div><a href="#">travel & food</a></div></div>
+						<div><div><a href="#">viral</a></div></div>
+						<div><div><a href="#">social media</a></div></div>
+						<div><div><a href="#">interview</a></div></div>
+						<div><div><a href="#">developement</a></div></div>
+						<div><div><a href="#">success</a></div></div>
+						<div><div><a href="#">live</a></div></div>
+						<div><div><a href="#">did you know?</a></div></div>
+						<div><div><a href="#">health</a></div></div>
+					</div>
+				</div>
+ -->
+				<!-- Latest Episodes -->
+				<!-- div class="col-lg-4">
+					<div class="footer_title">Latest Episodes</div>
+					<div class="latest_container">
+						 -->
+						<!-- Latest -->
+						<!-- <div class="latest">
+							<div class="latest_title_container d-flex flex-row align-items-start justify-content-start">
+								<a href="episode.html">
+									<div class="d-flex flex-row align-items-start justify-content-start">
+										<div class="latest_play">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 714 714" style="enable-background:new 0 0 714 714;" xml:space="preserve">
+												<g id="Play">
+													<path d="M641.045,318.521L102,0C73.822,0,51,22.822,51,51v612c0,28.178,22.822,51,51,51l539.045-318.521      C654.661,387.422,663,372.81,663,357C663,341.19,654.661,326.579,641.045,318.521z M153,565.386V148.614L505.665,357      L153,565.386z" fill="#FFFFFF"/>
+												</g>
+											</svg>
+										</div>
+										<div class="latest_title_content">
+											<div class="latest_title">Season 4 Episode 48 - A Step Further</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="latest_episode_info">
+								<ul class="d-flex flex-row align-items-start justify-content-start">
+									<li><a href="#">September 24, 2018</a></li>
+									<li><a href="#">Music</a></li>
+								</ul>
+							</div>
+						</div> -->
+
+						<!-- Latest -->
+						<!-- <div class="latest">
+							<div class="latest_title_container d-flex flex-row align-items-start justify-content-start">
+								<a href="episode.html">
+									<div class="d-flex flex-row align-items-start justify-content-start">
+										<div class="latest_play">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 714 714" style="enable-background:new 0 0 714 714;" xml:space="preserve">
+												<g id="Play">
+													<path d="M641.045,318.521L102,0C73.822,0,51,22.822,51,51v612c0,28.178,22.822,51,51,51l539.045-318.521      C654.661,387.422,663,372.81,663,357C663,341.19,654.661,326.579,641.045,318.521z M153,565.386V148.614L505.665,357      L153,565.386z" fill="#FFFFFF"/>
+												</g>
+											</svg>
+										</div>
+										<div class="latest_title_content">
+											<div class="latest_title">Season 4 Episode 47 - Deep in Crypto</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="latest_episode_info">
+								<ul class="d-flex flex-row align-items-start justify-content-start">
+									<li><a href="#">September 24, 2018</a></li>
+									<li><a href="#">Music</a></li>
+								</ul>
+							</div>
+						</div> -->
+
+						<!-- Latest -->
+						<!-- <div class="latest">
+							<div class="latest_title_container d-flex flex-row align-items-start justify-content-start">
+								<a href="episode.html">
+									<div class="d-flex flex-row align-items-start justify-content-start">
+										<div class="latest_play">
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 714 714" style="enable-background:new 0 0 714 714;" xml:space="preserve">
+												<g id="Play">
+													<path d="M641.045,318.521L102,0C73.822,0,51,22.822,51,51v612c0,28.178,22.822,51,51,51l539.045-318.521      C654.661,387.422,663,372.81,663,357C663,341.19,654.661,326.579,641.045,318.521z M153,565.386V148.614L505.665,357      L153,565.386z" fill="#FFFFFF"/>
+												</g>
+											</svg>
+										</div>
+										<div class="latest_title_content">
+											<div class="latest_title">Season 4 Episode 46 - Nothing is real</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="latest_episode_info">
+								<ul class="d-flex flex-row align-items-start justify-content-start">
+									<li><a href="#">September 24, 2018</a></li>
+									<li><a href="#">Music</a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div> -->
+
+				<!-- Gallery -->
+				<!-- <div class="col-lg-4">
+					<div class="footer_title">Instagram</div>
+					<div class="gallery d-flex flex-row align-items-start justify-content-start flex-wrap"> -->
+						
+						<!-- Gallery Item -->
+						<!-- <div class="gallery_item">
+							<a class="colorbox" href="images/gallery_1_large.jpg"><img src="images/gallery_1.jpg" alt=""></a>
+						</div> -->
+
+						<!-- Gallery Item -->
+						<!-- <div class="gallery_item">
+							<a class="colorbox" href="images/gallery_2_large.jpg"><img src="images/gallery_2.jpg" alt=""></a>
+						</div> -->
+
+						<!-- Gallery Item -->
+						<!-- <div class="gallery_item">
+							<a class="colorbox" href="images/gallery_3_large.jpg"><img src="images/gallery_3.jpg" alt=""></a>
+						</div> -->
+
+						<!-- Gallery Item -->
+						<!-- <div class="gallery_item">
+							<a class="colorbox" href="images/gallery_4_large.jpg"><img src="images/gallery_4.jpg" alt=""></a>
+						</div> -->
+
+						<!-- Gallery Item -->
+						<!-- <div class="gallery_item">
+							<a class="colorbox" href="images/gallery_5_large.jpg"><img src="images/gallery_5.jpg" alt=""></a>
+						</div> -->
+
+				<!-- 	</div>
+				</div> -->
+			<!-- </div>
+			<div class="row footer_social_row">
+				<div class="col">
+					<div class="footer_social">
+						<ul class="d-flex flex-row align-items-center justify-content-center">
+							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-soundcloud" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div> -->
+
+</br></br>
+
+		</div>
+	</footer>
+</div>
+
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+<script src="../static/styles/bootstrap-4.1.2/popper.js"></script>
+<script src="../static/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+<script src="../static/plugins/greensock/TweenMax.min.js"></script>
+<script src="../static/plugins/greensock/TimelineMax.min.js"></script>
+<script src="../static/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="../static/plugins/greensock/animation.gsap.min.js"></script>
+<script src="../static/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="../static/plugins/colorbox/jquery.colorbox-min.js"></script>
+<script src="../static/plugins/jPlayer/jquery.jplayer.min.js"></script>
+<script src="../static/plugins/jPlayer/jplayer.playlist.min.js"></script>
+<script src="../static/plugins/easing/easing.js"></script>
+<script src="../static/plugins/progressbar/progressbar.min.js"></script>
+<script src="../static/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="../static/plugins/parallax-js-master/parallax.min.js"></script>
+<!-- <script src="../static/js/songs.js" type="module"></script> -->
+<script src="../static/js/episodes.js"></script>
+<script src="../static/js/typed.js"></script>
+<script src="../static/js/autoplay.js"></script>
+<script src="../static/js/relevance.js"></script>
+	<script>
+            var typed = new Typed('.typed4', {
+            strings: [
+            "Rainy days can be rather..."
+            ],
+            cursorChar: '|',
+            typeSpeed: 50,
+            startDelay: 0,
+            onComplete: function(self) { self.cursor.remove() }
+        });
+	</script>
+	<script>
+
+    var typed = new Typed('.typed5', {
+    strings: ['gloomy', 
+    'mundane',
+    'slow',
+    'depressing yet <i>somewhat calming</i> ?',
+    'grey...'
+    ],
+    startDelay: 2000,
+    typeSpeed: 40,
+    backSpeed: 60,
+    smartBackspace: true, // this is a default
+    loop: true,
+
+   
+    
+  });
+        </script>
+        <script>
+            var typed = new Typed('.typed1', {
+            strings: [
+            "rainy mondays? Dont worry we've got you covered !"
+            ],
+            cursorChar: '|',
+            typeSpeed: 50,
+            startDelay: 4000,
+            onComplete: function(self) { self.cursor.remove() }
+        });
+	</script>
+
+<script>
+	$('.sel').each(function() {
+$(this).children('select').css('display', 'none');
+
+var $current = $(this);
+
+$(this).find('option').each(function(i) {
+if (i == 0) {
+  $current.prepend($('<div>', {
+	class: $current.attr('class').replace(/sel/g, 'sel__box')
+  }));
+  
+  var placeholder = $(this).text();
+  $current.prepend($('<span>', {
+	class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+	text: placeholder,
+	'data-placeholder': placeholder
+  }));
+  
+  return;
+}
+
+$current.children('div').append($('<span>', {
+  class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+  text: $(this).text()
+}));
+});
+});
+
+// Toggling the `.active` state on the `.sel`.
+$('.sel').click(function() {
+$(this).toggleClass('active');
+});
+
+// Toggling the `.selected` state on the options.
+$('.sel__box__options').click(function() {
+var txt = $(this).text();
+var index = $(this).index();
+
+$(this).siblings('.sel__box__options').removeClass('selected');
+$(this).addClass('selected');
+
+var $currentSel = $(this).closest('.sel');
+$currentSel.children('.sel__placeholder').text(txt);
+$currentSel.children('select').prop('selectedIndex', index + 1);
+});
+</script>
+</body>
+</html>
