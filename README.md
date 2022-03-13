@@ -16,29 +16,16 @@ Vibe is an NLP driven music recommendation system, that allows users to explore 
 ### Describing how the user's day went to the sentiment analyzer.
 ![Sentiment Analyser](https://user-images.githubusercontent.com/86958793/158050554-8f204929-d8d9-4dff-9a8b-a27a7569412d.png)
 
-### Loading Screen
-![Loading screen](https://user-images.githubusercontent.com/86958793/158050599-512b9788-ff41-45a3-a44f-909828dc1033.png)
-
 ### Page for Happy Sentiment
-![Happy](https://user-images.githubusercontent.com/86958793/158050626-faf31728-dc97-4348-8529-8aec3f107e8b.png)
-
-### Songs on the above Page
-![image](https://user-images.githubusercontent.com/86958793/158050663-8133cdf4-3d76-4ae0-b43c-dad36a1d1289.png)
+![screenshot](https://user-images.githubusercontent.com/86958793/158051474-c36aaa1a-e98e-4ec3-bf78-27fc3759be17.png)
 
 ### User feedback section to improve song recommendation.
 ![image](https://user-images.githubusercontent.com/86958793/158050665-8a10c44b-e84f-4b85-817f-a54c1017d62a.png)
 
 ### Web pages for other sentiments
-![image](https://user-images.githubusercontent.com/86958793/158050682-d2877b33-969e-4bd8-82ad-0b5653c427c9.png)
+![screenshot (1)](https://user-images.githubusercontent.com/86958793/158051514-02cb908b-54c1-4067-a741-9ea19983cc6a.png)
 
-![image](https://user-images.githubusercontent.com/86958793/158050812-f72f3407-b771-4909-9864-ae0460645753.png)
-
-![image](https://user-images.githubusercontent.com/86958793/158050834-be3e11d5-2582-4ad7-b477-4cfb38fb5f94.png)
-
-
-
-
-
+![screenshot (2)](https://user-images.githubusercontent.com/86958793/158051555-3a4a842f-12a3-4ad4-9c6f-273338bd0218.png)
 
 
 ## Installation
